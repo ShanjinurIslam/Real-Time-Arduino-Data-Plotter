@@ -17,10 +17,10 @@ class DeviceWithAvailability extends BluetoothDevice {
 }
 
 class Message {
-  int whom;
-  String text;
+  double time;
+  String data;
 
-  Message(this.whom, this.text);
+  Message(this.time, this.data);
 }
 
 class BluetoothController {

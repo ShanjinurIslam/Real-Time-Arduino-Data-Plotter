@@ -41,6 +41,7 @@ class MainModel extends Model {
     server = device;
   }
 
+  int count = 1 ;
   void _onDataReceived(Uint8List data) {
     // Allocate buffer for parsed data
     int backspacesCounter = 0;
@@ -69,19 +70,26 @@ class MainModel extends Model {
     int index = buffer.indexOf(13);
     if (~index != 0) {
       messages.add(Message(
-          1,
+          count.toDouble(),
           backspacesCounter > 0
               ? _messageBuffer.substring(
                   0, _messageBuffer.length - backspacesCounter)
               : _messageBuffer + dataString.substring(0, index)));
       _messageBuffer = dataString.substring(index);
+      count++;
+      print(count);
     } else {
       _messageBuffer = (backspacesCounter > 0
           ? _messageBuffer.substring(
               0, _messageBuffer.length - backspacesCounter)
           : _messageBuffer + dataString);
     }
-    print(messages.length);
+    if(messages.length>0){
+      if(messages[messages.length-1].data == "\n"){
+        messages.removeAt(messages.length-1);
+      }
+    }
+    notifyListeners();
   }
 
   void disConnect() {
@@ -97,7 +105,7 @@ class MainModel extends Model {
       print('Connected to the device');
       connection = _connection;
       this.isConnecting = false;
-      this.isConnected = true ;
+      this.isConnected = true;
       notifyListeners();
       connection.input.listen(_onDataReceived).onDone(() {
         if (isDisconnecting) {
@@ -117,7 +125,7 @@ class MainModel extends Model {
 
     if (text.length > 0) {
       try {
-        connection.output.add(utf8.encode(text + "\r\n"));
+        connection.output.add(utf8.encode(text+ "\r\n"));
         await connection.output.allSent;
 
         Future.delayed(Duration(milliseconds: 333)).then((_) {});
@@ -130,4 +138,5 @@ class MainModel extends Model {
   bool get gotDevices => _gotDevices;
 
   List<DeviceWithAvailability> get devices => _devices;
+
 }
