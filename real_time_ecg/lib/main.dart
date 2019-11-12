@@ -8,10 +8,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      title: 'Real Time ECG',
+      theme: ThemeData(primarySwatch: Colors.blue, fontFamily: 'HelveticaNeue'),
       routes: {
         '/': (context) => new LandingScreen(),
       },

@@ -34,7 +34,7 @@ class DeviceSelectionState extends State<DeviceSelection> {
                   ),
                   Text(
                     'Back',
-                    style: TextStyle(fontSize: 20, color: Colors.blue),
+                    style: TextStyle(fontSize: 20, color: Colors.blue,fontWeight: FontWeight.w500),
                   )
                 ],
               ),
@@ -51,7 +51,7 @@ class DeviceSelectionState extends State<DeviceSelection> {
                     'Select Device',
                     style: TextStyle(
                         fontSize: 35,
-                        fontWeight: FontWeight.bold,
+                        fontWeight: FontWeight.w900,
                         color: Colors.black),
                   ),
                 )),
@@ -77,7 +77,7 @@ class DeviceSelectionState extends State<DeviceSelection> {
                           Text(
                             'HC-05',
                             style: TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.bold),
+                                fontSize: 20, fontWeight: FontWeight.w900),
                           ),
                           GestureDetector(
                             child: Icon(

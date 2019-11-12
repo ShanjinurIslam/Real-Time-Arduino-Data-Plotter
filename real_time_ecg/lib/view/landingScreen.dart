@@ -13,7 +13,7 @@ class LandingScreen extends StatelessWidget {
           Text(
             'Welcome',
             style: TextStyle(
-                fontSize: 40, fontWeight: FontWeight.bold, color: Colors.black),
+                fontSize: 40, fontWeight: FontWeight.w900, color: Colors.black),
           ),
           new RawMaterialButton(
             onPressed: () {
